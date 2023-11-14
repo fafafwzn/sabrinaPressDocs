@@ -11,8 +11,8 @@ Sabrina BotPress merupakan customer-facing chatbot milik BRI yang memadukan sist
 * [Location Information](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#sub-flow-location-information)
 
 Pada Sabrina BotPress terdapat beberapa komponen lain seperti:
-* Documents for RAG
-* Tables
+* [Documents for RAG](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#rag-in-botpress)
+* [Tables](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#tables)
 
 ## Platform Overview
 ### Nodes & Cards
@@ -102,7 +102,7 @@ Agent ini berfungsi untuk menerjemahkan jawaban dari chatbot ke bahasa masukan u
 ### Product Information Document
 ### Complaint Handling Document
 
-## Tables
-###
-
-
+## Tables & APIs
+### Fund Transfer Table
+### Score Checking Table
+### Location API
