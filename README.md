@@ -28,7 +28,7 @@ Card: Elemen yang lebih kecil daripada node dan berperilaku sesuai dengan jenisn
 
 ### Variables
 | *Variabel* | *Penjelasan* |
-| :---------: | :---------: |
+| :---------: | :--------- |
 | event.preview | Pesan user terakhir |
 | event.payload | Payload yang diterima |
 | user.user_acctno | Nomor rekening user (dummy), digunakan sebagai identifier utama di Sabrina BotPress |
