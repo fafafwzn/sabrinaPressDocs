@@ -37,12 +37,12 @@ Card: Elemen yang lebih kecil daripada node dan berperilaku sesuai dengan jenisn
 
 ## Main Flow
 ### Workflow
-1. Pada setiap awal session, user akan disambut dengan sapaan pembuka dari Sabrina.
-![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/153d654d-4f8c-4770-ac4e-c30822788832)
-Di tahap ini, user bisa memilih topik yang disediakan atau mengetik langsung pertanyaan mereka.
-![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/38fd56ae-f655-4da6-b931-589e298af39c)
-> Jika user memilih topik "Informasi Produk", "Komplain", atau "Pertanyaan Umum BRI", maka mereka akan diarahkan ke node
-![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/8071e806-645d-4c55-b4aa-45acdbb9fb32)
+1. Pada setiap awal session, user akan disambut dengan sapaan pembuka dari Sabrina.\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/153d654d-4f8c-4770-ac4e-c30822788832)\
+Di tahap ini, user bisa memilih topik yang disediakan atau mengetik langsung pertanyaan mereka.\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/38fd56ae-f655-4da6-b931-589e298af39c)\
+Jika user memilih topik "Informasi Produk", "Komplain", atau "Pertanyaan Umum BRI", maka mereka akan diarahkan ke node\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/8071e806-645d-4c55-b4aa-45acdbb9fb32)\
 
 3. 
 
