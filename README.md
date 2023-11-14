@@ -49,10 +49,10 @@ Agent ini berfungsi untuk menerjemahkan jawaban dari chatbot ke bahasa masukan u
 ### Workflow
 1. Pada setiap awal session, user akan disambut dengan sapaan pembuka dari Sabrina. Di tahap ini, user bisa memilih topik yang disediakan atau mengetik langsung pertanyaan mereka. Pada BotPress studio, masukan user akan masuk ke node main_input. Jika user memilih topik "Informasi Produk", "Komplain", atau "Pertanyaan Umum BRI", maka mereka akan diarahkan ke node main_prompting. Jika user memilih topik selain 3 topik tersebut, maka akan langsung diarahkan ke sub-flow. Jika user mengetik pertanyaannya langsung, maka user akan masuk ke node main_controller.\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/153d654d-4f8c-4770-ac4e-c30822788832)\
-![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/38fd56ae-f655-4da6-b931-589e298af39c)\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/38fd56ae-f655-4da6-b931-589e298af39c)
 
 2. Jika user diarahkan ke node main_prompting, maka user akan diberikan pertanyaan lanjutan. Card AI Task pada node ini berfungsi untuk membuat pertanyaan sesuai dengan pilihan user ("Informasi Produk", "Komplain", atau "Pertanyaan Umum BRI"), kemudian pertanyaan tersebut disimpan pada variabel workflow.botQuestion dan ditampilkan pada card Raw Input di bawahnya. Kemudian input dari user diteruskan ke node main_controller
-![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/8071e806-645d-4c55-b4aa-45acdbb9fb32)\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/8071e806-645d-4c55-b4aa-45acdbb9fb32)
 
 3. Node main_controller\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/54fe3aef-f5ef-4be1-a12a-5f2d45a7ac53)
