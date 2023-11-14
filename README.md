@@ -17,6 +17,7 @@ Pada Sabrina BotPress terdapat beberapa komponen lain seperti:
 ## Platform Overview
 ### Nodes & Cards
 Node: Sebuah elemen yang apabila ter-trigger akan mengeksekusi card yang berada di dalamnya secara berurutan dari atas hingga ke bawah. Node memiliki 1 input dan 1 atau lebih output yang akan ter-trigger apabila kondisi tertentu terpenuhi. Untuk memastikan node memiliki keluaran, letakkan card "Expression" dengan condition "true" di bagian paling akhir dari suatu node.\
+\
 Card: Elemen yang lebih kecil daripada node dan berperilaku sesuai dengan jenisnya.
 * Intent: Mentrigger output dari node apabila chatbot menerima pesan dari user yang memiliki suatu intent tertentu yang telah didefinisikan pada bagian pengaturan dari card tersebut
 * Expression: Mentrigger output dari node apabila suatu kondisi yang didefinisikan dalam codingan pada bagian Condition di pengaturan card bernilai "true". Best practice dari card ini adalah untuk mengkombinasikan dengan variable, kemudian menuliskan kondisi yang diinginkan pada kolom "Label", kemudian Generative AI akan secara otomatis menuliskan codingan yang sesuai dengan kondisi yang kita inginkan di bagian Condition
@@ -26,7 +27,7 @@ Card: Elemen yang lebih kecil daripada node dan berperilaku sesuai dengan jenisn
 * Triggers: Pemicu dimulainya percakapan dari node tertentu. Dapat dipilih menggunakan pemicu "Conversation Started" atau "Custom Trigger (advanced)" yang pemicunya adalah adanya payload yang masuk (dapat diakses di variabel ({{event.payload}})
 
 ### Variables
-| Variabel | Penjelasan |
+| *Variabel* | *Penjelasan* |
 | :---------: | :---------: |
 | event.preview | Pesan user terakhir |
 | event.payload | Payload yang diterima |
