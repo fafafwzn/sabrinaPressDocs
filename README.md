@@ -81,7 +81,11 @@ Card nomor 3-12 pada node main_controller merupakan card expression yang masing-
 \
 5. Apabila pesan user diteruskan menuju node main_reinput, berarti user telah menyelesaikan sub-flow dari start node hingga ke end nodenya, kemudian dikembalikan ke main flow menuju ke node main_controller, dan diteruskan ke node main_reinput. Pada node ini, user akan diberikan kesempatan untuk mengajukan pertanyaan lainnya seperti pada sapaan pembuka di awal session\
 \
-6. Node main_conclude berisi penutup percakapan
+6. Node main_conclude berisi penutup percakapan\
+\
+\
+Secara garis besar, cara kerja main flow adalah sebagai berikut:\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/572e4890-9c08-4a7b-9f75-5d935e178e34)
 
 ## Sub-Flow Product Information
 ### User's possible intents
