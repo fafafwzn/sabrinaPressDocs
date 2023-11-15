@@ -71,6 +71,7 @@ Card pertama adalah "General Intent", card ini berfungsi untuk menyeleksi pesan 
 > Catatan: Kondisi user keluar dari sub-flow ada dua jenis, yang pertama yaitu keluar karena sub-flow tersebut sudah tereksekusi hingga End nodenya, dan yang kedua yaitu keluar karena user tiba-tiba memberikan tanggapan di luar konteks sub-flow tersebut sebelum menyelesaikannya hingga ke End node. Kondisi kedua merupakan kondisi yang akan membuat variabel user.user_input bernilai "need_prompting" sehingga memicu card AI Task pada node main_controller untuk mengubah variabel workflow.needPrompting menjadi bernilai "true"
 * Apabila variabel workflow.endNode bernilai "true", maka pesan user akan diteruskan ke node main_conclude dan percakapan akan diakhiri
 \
+\
 Berikut ini adalah variabel masukan dan keluaran dari card AI Task pada node main_controller
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/99b84039-a12b-4377-b9be-fcb96d5f59d3)
 
