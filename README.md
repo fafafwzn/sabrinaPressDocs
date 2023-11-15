@@ -54,8 +54,24 @@ Agent ini berfungsi untuk menerjemahkan jawaban dari chatbot ke bahasa masukan u
 2. Jika user diarahkan ke node main_prompting, maka user akan diberikan pertanyaan lanjutan. Card AI Task pada node ini berfungsi untuk membuat pertanyaan sesuai dengan pilihan user ("Informasi Produk", "Komplain", atau "Pertanyaan Umum BRI"), kemudian pertanyaan tersebut disimpan pada variabel workflow.botQuestion dan ditampilkan pada card Raw Input di bawahnya. Kemudian input dari user diteruskan ke node main_controller\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/8071e806-645d-4c55-b4aa-45acdbb9fb32)
 
-3. Node main_controller\
+3. Node main_controller berperan sebagai controller, yaitu pengontrol percakapan yang bertugas untuk mengklasifikasikan pertanyaan dari user ke dalam masing-masing fitur chatbot\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/54fe3aef-f5ef-4be1-a12a-5f2d45a7ac53)
+
+Node ini berisi 14 card yang fungsinya adalah sebagai berikut:\
+Card pertama adalah "General Intent", card ini berfungsi untuk menyeleksi pesan user yang bersifat generic untuk diteruskan ke node main_prompting sehingga user diberikan pertanyaan lanjutan\
+Card berikutnya adalah AI Task yang berfungsi untuk mengklasifikasikan pesan user ke dalam sub-flow yang sesuai dengan intensinya. Cara kerjanya adalah dengan memberikan AI Task beberapa variabel boolean yang masing-masing secara default bernilai "false", kemudian memberikan instruksi kepada AI Task untuk mengubah salah satunya menjadi bernilai "true" apabila kondisi yang kita berikan pada bagian Task Instructions terpenuhi.\
+* Apabila variabel workflow.productInformation bernilai "true", maka pesan user akan diteruskan ke sub-flow [Product Information](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#sub-flow-product-information)
+* Apabila variabel workflow.userComplaint bernilai "true", maka pesan user akan diteruskan ke sub-flow [Complaint Handling](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#sub-flow-complaint-handling)
+* Apabila variabel workflow.generalQuestion bernilai "true", maka pesan user akan diteruskan ke sub-flow [General Question](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#sub-flow-general-question)
+* Apabila variabel workflow.fundTransfer bernilai "true", maka pesan user akan diteruskan ke sub-flow [Fund Transfer](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#sub-flow-fund-transfer)
+* Apabila variabel workflow.balanceCheck bernilai "true", maka pesan user akan diteruskan ke sub-flow [Balance Checking](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#sub-flow-balance-checking)
+* Apabila variabel workflow.creditScoring bernilai "true", maka pesan user akan diteruskan ke sub-flow [Score Checking](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#sub-flow-score-checking)
+* Apabila variabel workflow.investmentAdvisor bernilai "true", maka pesan user akan diteruskan ke sub-flow [Investment Advisor](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#sub-flow-investment-advisor)
+* Apabila variabel workflow.locInfo bernilai "true", maka pesan user akan diteruskan ke sub-flow [Location Information](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#sub-flow-location-information)
+* Apabila variabel workflow.needPrompting bernilai "true", maka pesan user akan diteruskan ke node main_reinput. Variabel ini akan bernilai true jika user baru saja keluar dari sub-flow dan variabel user.user_input bernilai "need_prompting"
+> Catatan: Kondisi user keluar dari sub-flow ada dua jenis, yang pertama yaitu keluar karena sub-flow tersebut sudah tereksekusi hingga End nodenya, dan yang kedua yaitu keluar karena user tiba-tiba memberikan tanggapan di luar konteks sub-flow tersebut sebelum menyelesaikannya hingga ke End node. Kondisi kedua merupakan kondisi yang akan membuat variabel user.user_input bernilai "need_prompting" sehingga memicu card AI Task pada node main_controller untuk mengubah variabel workflow.needPrompting menjadi bernilai "true"
+* Apabila variabel workflow.endNode bernilai "true", maka pesan user akan diteruskan ke node main_conclude dan percakapan akan diakhiri
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/99b84039-a12b-4377-b9be-fcb96d5f59d3)
 
 
 ## Sub-Flow Product Information
