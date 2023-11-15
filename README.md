@@ -72,9 +72,16 @@ Card pertama adalah "General Intent", card ini berfungsi untuk menyeleksi pesan 
 * Apabila variabel workflow.endNode bernilai "true", maka pesan user akan diteruskan ke node main_conclude dan percakapan akan diakhiri
 \
 \
-Berikut ini adalah variabel masukan dan keluaran dari card AI Task pada node main_controller
+Berikut ini adalah variabel masukan dan keluaran dari card AI Task pada node main_controller:
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/99b84039-a12b-4377-b9be-fcb96d5f59d3)
 
+Card nomor 3-12 pada node main_controller merupakan card expression yang masing-masing akan meneruskan output dari node main_controller ke sub-flow atau ke node lainnya sesuai dengan uraian sebelumnya. Kemudian card nomor 13 adalah "Product Name", card ini akan mengarahkan pesan user yang tidak terklasifikasi ke card-card expression sebelumnya namun mengandung nama produk BRI dan mengarahkannya ke sub-flow Product Information. Kemudian yang terakhir adalah expression card dengan Label "always" untuk mengarahkan masukan user yang tidak terklasifikasi ke card manapun ke node fallback\
+\
+4. Pesan user yang tidak masuk ke sub-flow manapun seperti misalnya small talk, sapaan, salam, dan pertanyaan-pertanyaan di luar konteks akan diteruskan oleh node main_controller menuju ke node main_fallback. Di node ini terdapat AI Task yang diinstruksikan untuk membuat pesan balasan terhadap masukan user, dan diikuti dengan follow-up question yang akan menanyakan kembali kebutuhan user seperti pada sapaan pembuka di awal session\
+\
+5. Apabila pesan user diteruskan menuju node main_reinput, berarti user telah menyelesaikan sub-flow dari start node hingga ke end nodenya, kemudian dikembalikan ke main flow menuju ke node main_controller, dan diteruskan ke node main_reinput. Pada node ini, user akan diberikan kesempatan untuk mengajukan pertanyaan lainnya seperti pada sapaan pembuka di awal session\
+\
+6. Node main_conclude berisi penutup percakapan
 
 ## Sub-Flow Product Information
 ### User's possible intents
