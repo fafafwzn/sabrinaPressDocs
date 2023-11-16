@@ -10,9 +10,7 @@ Sabrina BotPress merupakan customer-facing chatbot milik BRI yang memadukan sist
 * [Investment Advisor](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#sub-flow-investment-advisor)
 * [Location Information](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#sub-flow-location-information)
 
-Pada Sabrina BotPress terdapat beberapa komponen lain seperti:
-* [Documents for RAG](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#rag-in-botpress)
-* [Tables](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#tables)
+Pada Sabrina BotPress terdapat beberapa komponen lain seperti [Dokumen, Tabel, dan API](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#tables).
 
 ## Platform Overview
 ### Nodes & Cards
@@ -106,6 +104,7 @@ Secara garis besar, cara kerja main flow adalah sebagai berikut:\
 ## Sub-Flow Fund Transfer
 ### User's possible intents
 ### Workflow
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/eb60d4a1-7535-4b3d-ae40-35ce7d46bac5)
 ### Variables
 
 ## Sub-Flow Balance Checking
@@ -129,11 +128,9 @@ Secara garis besar, cara kerja main flow adalah sebagai berikut:\
 ### Workflow
 ### Variables
 
-## RAG in BotPress
-### Product Information Document
-### Complaint Handling Document
-
-## Tables & APIs
+## Documents, Tables, & APIs
+### Product Knowledge
+### Complaint Handling Knowledge
 ### [Fund Transfer & Balance Checking Table](https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/)
 ### [Score Checking Table](https://sabrina-credit-scoring-vq36ocpmka-et.a.run.app/)
 ### [Investment Risk Appetite Table](https://sabrina-investment-advisor-vq36ocpmka-et.a.run.app/)
