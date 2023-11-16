@@ -111,6 +111,7 @@ Secara garis besar, cara kerja main flow adalah sebagai berikut:\
 ## Sub-Flow Balance Checking
 ### User's possible intents
 ### Workflow
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/5e22a1e5-adf2-46b8-9735-37227b954236)
 ### Variables
 
 ## Sub-Flow Score Checking
@@ -133,6 +134,8 @@ Secara garis besar, cara kerja main flow adalah sebagai berikut:\
 ### Complaint Handling Document
 
 ## Tables & APIs
-### [Fund Transfer Table](https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/)
-### Score Checking Table
-### Location API
+### [Fund Transfer & Balance Checking Table](https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/)
+### [Score Checking Table](https://sabrina-credit-scoring-vq36ocpmka-et.a.run.app/)
+### [Investment Risk Appetite Table](https://sabrina-investment-advisor-vq36ocpmka-et.a.run.app/)
+### [Google Maps API](https://developers.google.com/maps)
+### [Mozilla Speech Recognition API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition)
