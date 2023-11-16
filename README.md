@@ -85,7 +85,8 @@ Card nomor 3-12 pada node main_controller merupakan card expression yang masing-
 \
 \
 Secara garis besar, cara kerja main flow adalah sebagai berikut:\
-![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/572e4890-9c08-4a7b-9f75-5d935e178e34)
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/20a7b3ad-c754-40e5-a18f-d38170d6c081)
+
 
 ## Sub-Flow Product Information
 ### User's possible intents
@@ -132,6 +133,6 @@ Secara garis besar, cara kerja main flow adalah sebagai berikut:\
 ### Complaint Handling Document
 
 ## Tables & APIs
-### Fund Transfer Table
+### [Fund Transfer Table](https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/)
 ### Score Checking Table
 ### Location API
