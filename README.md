@@ -10,7 +10,7 @@ Sabrina BotPress merupakan customer-facing chatbot milik BRI yang memadukan sist
 * [Investment Advisor](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#sub-flow-investment-advisor)
 * [Location Information](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#sub-flow-location-information)
 
-Pada Sabrina BotPress terdapat beberapa komponen lain seperti [Dokumen, Tabel, dan API](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#tables).
+Pada Sabrina BotPress terdapat beberapa komponen lain seperti [Dokumen, Tabel, dan API](https://github.com/fafafwzn/sabrinaPressDocs/blob/main/README.md#documents-tables--apis).
 
 ## Platform Overview
 ### Nodes & Cards
