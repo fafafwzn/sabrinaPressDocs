@@ -129,8 +129,8 @@ Secara garis besar, cara kerja main flow adalah sebagai berikut:\
 ### Variables
 
 ## Documents, Tables, & APIs
-### Product Knowledge
-### Complaint Handling Knowledge
+### Product Knowledge Document
+### Complaint Handling Knowledge Document
 ### [Fund Transfer & Balance Checking Table](https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/)
 ### [Score Checking Table](https://sabrina-credit-scoring-vq36ocpmka-et.a.run.app/)
 ### [Investment Risk Appetite Table](https://sabrina-investment-advisor-vq36ocpmka-et.a.run.app/)
