@@ -121,6 +121,7 @@ Secara garis besar, cara kerja main flow adalah sebagai berikut:\
 ## Sub-Flow Investment Advisor
 ### User's possible intents
 ### Workflow
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/b85da0c3-1a95-48d2-ae7c-5625c99e414a)
 ### Variables
 
 ## Sub-Flow Location Information
