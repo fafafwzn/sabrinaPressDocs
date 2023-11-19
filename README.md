@@ -94,6 +94,7 @@ Secara garis besar, cara kerja main flow adalah sebagai berikut:\
 ## Sub-Flow Complaint Handling
 ### User's possible intents
 ### Workflow
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/cf4c6cb1-1c5c-48bb-bdee-fdd66a4760eb)
 ### Variables
 
 ## Sub-Flow General Question
