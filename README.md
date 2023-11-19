@@ -87,46 +87,65 @@ Secara garis besar, cara kerja main flow adalah sebagai berikut:\
 
 
 ## Sub-Flow Product Information
-### User's possible intents
+### User intent example
 ### Workflow
 ### Variables
 
 ## Sub-Flow Complaint Handling
-### User's possible intents
+### User intent example
+* saya gagal login brimo
+* brimo bermasalah
+* tidak dapat verifikasi wajah di brimo
+* pengajuan ceria gagal
+* lupa username dan password brimo
+* brimo saya terblokir
+* sy mau mengajukan komplain
+* brimo saya mengalami kendala
+* brimo bermasalah
+* lupa pin brimo
+\
 ### Workflow
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/cf4c6cb1-1c5c-48bb-bdee-fdd66a4760eb)
+\
 ### Variables
+| *Variabel* | *Penjelasan* |
+| :---------: | :--------- |
+| workflow.user_complaint_summary | Summary komplain user. Digunakan untuk menangkap keluaran dari card AI Task pertama pada node complaint_summarize. String dari variabel ini nantinya akan jadi masukan bagi card Knowledge Base pada node complaint_KB jika summary komplain user telah terkonfirmasi benar |
+| workflow.complaint_summ_result | Konfirmasi dari user terhadap summary yang diberikan. Merupakan masukan dari card AI Task kedua pada node complaint_summarize |
+| workflow.summ_affirmationYes | Hasil klasifikasi dari kalimat konfirmasi user. Digunakan untuk menangkap keluaran dari card AI Task kedua pada node complaint_summarize. Variabel ini bertipe boolean dan merupakan hasil klasifikasi AI Task yang menentukan apakah summary dari komplain user terkonfirmasi benar atau tidak |
+| turn.KnowledgeAgent.answer | Kondisi card knowledge base. Apabila card knowledge base memberikan jawaban dari dokumen, maka variabel ini akan bernilai true, jika sebaliknya maka variabel ini akan bernilai false |
+\
 
 ## Sub-Flow General Question
-### User's possible intents
+### User intent example
 ### Workflow
 ### Variables
 
 ## Sub-Flow Fund Transfer
-### User's possible intents
+### User intent example
 ### Workflow
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/eb60d4a1-7535-4b3d-ae40-35ce7d46bac5)
 ### Variables
 
 ## Sub-Flow Balance Checking
-### User's possible intents
+### User intent example
 ### Workflow
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/5e22a1e5-adf2-46b8-9735-37227b954236)
 ### Variables
 
 ## Sub-Flow Score Checking
-### User's possible intents
+### User intent example
 ### Workflow
 ### Variables
 
 ## Sub-Flow Investment Advisor
-### User's possible intents
+### User intent example
 ### Workflow
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/b85da0c3-1a95-48d2-ae7c-5625c99e414a)
 ### Variables
 
 ## Sub-Flow Location Information
-### User's possible intents
+### User intent example
 ### Workflow
 ### Variables
 
