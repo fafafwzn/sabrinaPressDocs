@@ -103,8 +103,25 @@ Secara garis besar, cara kerja main flow adalah sebagai berikut:\
 * brimo saya mengalami kendala
 * brimo bermasalah
 * lupa pin brimo
-\
+
 ### Workflow
+1. Saat user mengajukan suatu komplain, maka controller di main flow akan mengarahkan ke sub-flow complaint handling
+2. Di sub-flow complaint handling, mula-mula flow dari user akan disummarize untuk dikonfirmasi oleh user. Proses summarize tersebut terjadi pada card AI Task pertama pada node complaint_summarize. User dapat melakukan konfirmasi dengan cara menekan tombol benar/salah pada chat interface, atau dengan mengetik. Jika masukan dari user berupa ketikan, maka card AI Task kedua pada node complaint_summarize akan mengklasifikasikan ketikan user tersebut (termasuk afirmatif atau non-afirmatif)\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/dcebf493-2053-48ef-8267-5135cfa32acd)\
+3. Jika user tidak mengkonfirmasi hasil summarize terhadap komplain mereka, maka mereka akan diarahkan ke node complaint_fallback. Pada node ini, user diminta untuk memparafrase masukan mereka. Kemudian, output dari node ini akan diarahkan kembali ke main flow, tepatnya menuju ke node controller untuk nantinya diarahkan kembali ke sub-flow complaint handling jika masukan user pada card input di node complaint_fallback bersifat komplain\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/029ebeba-3d53-4cba-bb65-2473eaa90138)\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/3f12cc2f-b388-41cb-8120-cf8dc4299db2)\
+4. Jika user mengkonfirmasi hasil summarize terhadap komplain mereka, maka mereka
+
+
+
+
+
+
+
+
+
+
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/cf4c6cb1-1c5c-48bb-bdee-fdd66a4760eb)
 \
 ### Variables
