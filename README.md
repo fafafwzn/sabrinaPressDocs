@@ -117,7 +117,7 @@ Cara kerja main flow secara umum adalah sebagai berikut:\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/420c8670-d069-407e-9b3d-e027efe0d9ea)\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/7ff1d038-41b5-42ce-9490-0b21d733dab9)
 \
-Cara kerja main flow secara umum adalah sebagai berikut:\
+Cara kerja sub-flow complaint handling secara umum adalah sebagai berikut:\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/cf4c6cb1-1c5c-48bb-bdee-fdd66a4760eb)
 \
 ### Variables
@@ -149,7 +149,7 @@ Cara kerja main flow secara umum adalah sebagai berikut:\
 * sisa saldo
  
 ### Workflow
-1. Saat user diarahkan ke sub-flow balance checking, akan dilakukan hit API [Fund Transfer & Balance Checking Table](https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/) menggunakan identifier berupa variable user.user_acctno untuk mendapatkan value nama dan sisa saldo di rekening user. Berikut ini adalah code snippet untuk hit API tersebut:\
+1. Saat user diarahkan ke sub-flow balance checking, akan dilakukan hit API [Fund Transfer & Balance Checking Table](https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/) menggunakan identifier berupa variable user.user_acctno untuk mendapatkan value nama dan sisa saldo di rekening user. Berikut ini adalah code snippet untuk hit API tersebut:
 ```
 const url = 'https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/get_balance/' + user.user_acctno
 const response = await axios.get(url)
@@ -161,10 +161,19 @@ workflow.balance = formattedNumber1
 workflow.name = response.data.fullname
 workflow.censoredacctno = user.user_acctno.substring(0, 4) + "*******" + user.user_acctno.substring(9)
 ```
-![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/5e22a1e5-adf2-46b8-9735-37227b954236)
+2. Kemudian chatbot akan menampilkan data sisa saldo rekening user seperti pada gambar berikut:
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/e6bb9c53-870c-4ace-9ce7-3276e1b16f82)
 \
+Cara kerja sub-flow complaint handling secara umum adalah sebagai berikut:\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/ab7b8a5b-a88e-4250-ab54-956c03409e6e)\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/5e22a1e5-adf2-46b8-9735-37227b954236)
 
 ### Variables
+| *Variabel* | *Penjelasan* |
+| :---------: | :--------- |
+| workflow.balance | Sisa saldo user yang didapatkan dari tabel [Fund Transfer & Balance Checking Table](https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/) |
+| workflow.name | Nama user yang didapatkan dari tabel [Fund Transfer & Balance Checking Table](https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/) |
+| workflow.censoredacctno | Merupakan nomor rekening user, yaitu sama dengan variabel user.user_acctno namun disamarkan pada bagian tengahnya |
 
 ## Sub-Flow Score Checking
 ### User intent example
