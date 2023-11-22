@@ -108,15 +108,16 @@ Cara kerja main flow secara umum adalah sebagai berikut:\
 1. Saat user mengajukan suatu komplain, maka controller di main flow akan mengarahkan ke sub-flow complaint handling
 2. Di sub-flow complaint handling, mula-mula flow dari user akan disummarize untuk dikonfirmasi oleh user. Proses summarize tersebut terjadi pada card AI Task pertama pada node complaint_summarize. User dapat melakukan konfirmasi dengan cara menekan tombol benar/salah pada chat interface, atau dengan mengetik. Jika masukan dari user berupa ketikan, maka card AI Task kedua pada node complaint_summarize akan mengklasifikasikan ketikan user tersebut (termasuk afirmatif atau non-afirmatif)\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/dcebf493-2053-48ef-8267-5135cfa32acd)\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/60ed620a-f4cb-4914-bf25-9a8c6a093c46)
 3. Jika user tidak mengkonfirmasi hasil summarize terhadap komplain mereka, maka mereka akan diarahkan ke node complaint_fallback. Pada node ini, user diminta untuk memparafrase masukan mereka. Kemudian, output dari node ini akan diarahkan kembali ke main flow, tepatnya menuju ke node controller untuk nantinya diarahkan kembali ke sub-flow complaint handling jika masukan user pada card input di node complaint_fallback bersifat komplain\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/029ebeba-3d53-4cba-bb65-2473eaa90138)\
-![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/3f12cc2f-b388-41cb-8120-cf8dc4299db2)\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/3f12cc2f-b388-41cb-8120-cf8dc4299db2)
 4. Jika user mengkonfirmasi hasil summarize terhadap komplain mereka, maka komplain mereka akan dijawab oleh card knowledge-query pada node complaint_KB yang akan mencari jawaban atas komplain user pada Complaint Handling Knowledge Document. Pada node ini, jika komplain dari user tidak dapat dijawab menggunakan informasi yang disediakan pada Complaint Handling Knowledge Document, maka akan diarahkan ke node complaint_ooc, lalu diteruskan ke main flow\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/802beef1-2b91-4204-a2d1-41a71ffc9cc1)\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/420c8670-d069-407e-9b3d-e027efe0d9ea)\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/7ff1d038-41b5-42ce-9490-0b21d733dab9)
 \
-Cara kerja main flow secara umum adalah sebagai berikut:
+Cara kerja main flow secara umum adalah sebagai berikut:\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/cf4c6cb1-1c5c-48bb-bdee-fdd66a4760eb)
 \
 ### Variables
