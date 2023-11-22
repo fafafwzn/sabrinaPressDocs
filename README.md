@@ -82,7 +82,7 @@ Card nomor 3-12 pada node main_controller merupakan card expression yang masing-
 6. Node main_conclude berisi penutup percakapan\
 \
 \
-Secara garis besar, cara kerja main flow adalah sebagai berikut:\
+Cara kerja main flow secara umum adalah sebagai berikut:\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/20a7b3ad-c754-40e5-a18f-d38170d6c081)
 
 
@@ -111,17 +111,12 @@ Secara garis besar, cara kerja main flow adalah sebagai berikut:\
 3. Jika user tidak mengkonfirmasi hasil summarize terhadap komplain mereka, maka mereka akan diarahkan ke node complaint_fallback. Pada node ini, user diminta untuk memparafrase masukan mereka. Kemudian, output dari node ini akan diarahkan kembali ke main flow, tepatnya menuju ke node controller untuk nantinya diarahkan kembali ke sub-flow complaint handling jika masukan user pada card input di node complaint_fallback bersifat komplain\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/029ebeba-3d53-4cba-bb65-2473eaa90138)\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/3f12cc2f-b388-41cb-8120-cf8dc4299db2)\
-4. Jika user mengkonfirmasi hasil summarize terhadap komplain mereka, maka mereka
-
-
-
-
-
-
-
-
-
-
+4. Jika user mengkonfirmasi hasil summarize terhadap komplain mereka, maka komplain mereka akan dijawab oleh card knowledge-query pada node complaint_KB yang akan mencari jawaban atas komplain user pada Complaint Handling Knowledge Document. Pada node ini, jika komplain dari user tidak dapat dijawab menggunakan informasi yang disediakan pada Complaint Handling Knowledge Document, maka akan diarahkan ke node complaint_ooc, lalu diteruskan ke main flow\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/802beef1-2b91-4204-a2d1-41a71ffc9cc1)\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/420c8670-d069-407e-9b3d-e027efe0d9ea)\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/7ff1d038-41b5-42ce-9490-0b21d733dab9)
+\
+Cara kerja main flow secara umum adalah sebagai berikut:
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/cf4c6cb1-1c5c-48bb-bdee-fdd66a4760eb)
 \
 ### Variables
