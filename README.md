@@ -164,7 +164,7 @@ workflow.censoredacctno = user.user_acctno.substring(0, 4) + "*******" + user.us
 2. Kemudian chatbot akan menampilkan data sisa saldo rekening user seperti pada gambar berikut:
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/e6bb9c53-870c-4ace-9ce7-3276e1b16f82)
 \
-Cara kerja sub-flow complaint handling secara umum adalah sebagai berikut:\
+Cara kerja sub-flow balance checking secara umum adalah sebagai berikut:\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/ab7b8a5b-a88e-4250-ab54-956c03409e6e)\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/5e22a1e5-adf2-46b8-9735-37227b954236)
 
