@@ -142,8 +142,28 @@ Cara kerja main flow secara umum adalah sebagai berikut:\
 
 ## Sub-Flow Balance Checking
 ### User intent example
+* saldo saya sisa berapa?
+* berapa sisa saldo saya?
+* saya ingin tau uang saya di rekening masih ada berapa
+* cek saldo
+* sisa saldo
+ 
 ### Workflow
+1. Saat user diarahkan ke sub-flow balance checking, akan dilakukan hit API [Fund Transfer & Balance Checking Table](https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/) menggunakan identifier berupa variable user.user_acctno untuk mendapatkan value nama dan sisa saldo di rekening user. Berikut ini adalah code snippet untuk hit API tersebut:\
+```
+const url = 'https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/get_balance/' + user.user_acctno
+const response = await axios.get(url)
+
+const number1 = response.data.balance;
+const formattedNumber1 = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(number1);
+
+workflow.balance = formattedNumber1
+workflow.name = response.data.fullname
+workflow.censoredacctno = user.user_acctno.substring(0, 4) + "*******" + user.user_acctno.substring(9)
+```
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/5e22a1e5-adf2-46b8-9735-37227b954236)
+\
+
 ### Variables
 
 ## Sub-Flow Score Checking
