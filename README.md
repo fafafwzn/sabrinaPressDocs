@@ -213,7 +213,9 @@ try {
   workflow.riskAppetiteExist = false
 }
 ```
-2. **Pengisian kuisioner profil risiko**: Terdapat 5 pertanyaan pada kuisioner profil risiko yang masing-masing jawaban user atas pertanyaan tersebut akan melalui pembobotan untuk menentukan profil risiko user. Berikut ini adalah daftar pertanyaannya:\
+2. **Pengisian kuisioner profil risiko**: Terdapat 5 pertanyaan pada kuisioner profil risiko yang masing-masing jawaban user atas pertanyaan tersebut akan melalui pembobotan untuk menentukan profil risiko user. Pada saat mengisi kuisioner profil risiko, user memiliki kesempatan maksimal 3 kali untuk memilih dari pilihan jawaban yang tersedia. Jika user mengetik jawaban selain jawaban yang disediakan sebanyak 3 kali berturut-turut, maka user akan dikembalikan ke main flow.\
+\
+Berikut ini adalah daftar pertanyaan beserta skor masing-masing jawabannya:
 ```
 Kuisioner:
 a. Manakah yang paling menggambarkan dirimu?
@@ -246,31 +248,50 @@ e. Berapa lama rencana investasi Anda?
 - 4 hingga 5 tahun (16)
 - Lebih dari 5 tahun (24)
 ```
-Berikut ini adalah daftar pembagian profil risikonya:\
+Berikut ini adalah daftar pembagian profil risiko beserta produk investasi yang disarankan:
 ```
-a. Konservatif
+a. Konservatif (Skor 0-44)
 - Britama Rencana, yaitu tabungan investasi dengan setoran tetap bulanan yang dilengkapi dengan fasilitas perlindungan asuransi jiwa. Anda bisa mendaftar Britama Rencana dengan mengunjungi kantor BRI terdekat.
 - Deposito, yaitu simpanan berjangka yang hanya dapat ditarik pada jangka waktu tertentu dengan bunga lebih besar dibanding giro atau tabungan. Anda bisa mendaftar Deposito Rupiah secara online di https://eform.bri.co.id/home/syarat/deposito atau dengan mengunjungi kantor cabang BRI terdekat.
 
-b. Konservatif-Moderat
+b. Konservatif-Moderat (Skor 45-55)
 - BRIFINE DPLK Pasar Uang, yaitu produk investasi yang memiliki tingkat risiko rendah dengan instrumen investasi sebagai berikut: Deposito, SBI, Obligasi jangka n < 1 tahun. Pendaftaran dapat dilakukan di Kantor Cabang & Kantor Cabang Pembantu BRI yang telah memiliki sistem BRIVEST.
 - BRIFINE DPLK Pasar Uang Syariah, yaitu produk investasi yang memiliki tingkat risiko rendah dengan instrumen investasi yaitu: Deposito Bank Syariah, SBI Syariah, SUKUK dengan jangka waktu n < 1 tahun. Pendaftaran dapat dilakukan di Kantor Cabang & Kantor Cabang Pembantu BRI yang telah memiliki sistem BRIVEST.
 - Reksa Dana Pasar Uang, yaitu instrumen investasi Efek bersifat Utang dan bertujuan untuk menjaga likuiditas dengan risiko tergolong rendah dan waktu jatuh tempo pendek, kurang lebih 1 (satu) tahun. Anda bisa membeli Reksa Dana Pasar Uang di Sentra Layanan BRI Prioritas terdekat.
 - Obligasi Negara Ritel (ORI), yaitu surat berharga yang diterbitkan oleh pemerintah untuk investor ritel. ORI menawarkan pengembalian tetap (fixed rate) yang artinya tingkat kupon tidak akan berubah sampai jatuh tempo. Kamu dapat melakukan pemesanan melalui SBN Online BRI di https://sbn.bri.co.id.
 
-c. Moderat
+c. Moderat (Skor 56-63)
 - BRIFINE DPLK Pendapatan Tetap, yaitu produk investasi yang memiliki tingkat risiko sedang dengan instrumen investasi sebagai berikut: SUKUK, Surat Berharga Negara, Obligasi Korporasi BUMN. Pendaftaran dapat dilakukan di Kantor Cabang & Kantor Cabang Pembantu BRI yang telah memiliki sistem BRIVEST.
 - Reksa Dana Pendapatan Tetap, yaitu produk reksadana yang sebagian besar alokasi dananya berbentuk efek utang, dengan risiko lebih besar dari Pasar Uang dan waktu jatuh tempo  lebih dari 1 (satu) tahun.Anda bisa membeli Reksa Dana Pendapatan Tetap di Sentra Layanan BRI Prioritas terdekat.
 
-d. Moderat-Agresif
+d. Moderat-Agresif (Skor 64-71)
 - BRIFINE DPLK Kombinasi, yaitu produk investasi yang memiliki tingkat risiko sesuai komposisi dengan instrumen investasi berupa kombinasi antara 2 atau 3 investasi sesuai pilihan peserta. Pendaftaran dapat dilakukan di Kantor Cabang & Kantor Cabang Pembantu BRI yang telah memiliki sistem BRIVEST.
 
-e. Agresif
+e. Agresif (Skor 72-100)
 - BRIFINE DPLK Saham, yaitu produk investasi yang memiliki tingkat risiko tinggi dengan instrumen investasi sebagai berikut: Reksadana Saham, Saham. Pendaftaran dapat dilakukan di Kantor Cabang & Kantor Cabang Pembantu BRI yang telah memiliki sistem BRIVEST.
 - Reksa Dana Saham, yaitu produk investasi yang menempatkan investasi ke pembelian saham-saham yang tercatat di Bursa Efek Indonesia, dengan risiko lebih tinggi (dari pasar uang dan pendapatan tetap) dan pengembalian yang lebih tinggi. Anda bisa membeli Reksa Dana Saham di Sentra Layanan BRI Prioritas terdekat.
 - Rekening Dana Nasabah (RDN), yaitu rekening yang dipergunakan khusus untuk Anda yang ingin bertransaksi efek (Saham/Obligasi) di Bursa Efek Indonesia. Anda dapat melakukan pembukaan RDN melalui aplikasi BRImo.
 ```
-3. **Setelah pengisian kuisioner profil risiko**
+3. **Setelah pengisian kuisioner profil risiko**: Hasil pengisian kuisioner profil risiko oleh user akan ditambahkan ke dalam tabel skor profil risiko user. Jika user sebelumnya telah mengisi kuisioner profil risiko, maka skor profil risiko user akan diupdate. Jika user belum pernah mengisi kuisioner profil risiko, maka skor profil risiko user akan ditambahkan pada row baru. Penambahan atau update tabel skor profil risiko user ini dilakukan dengan script berikut:
+```
+const url1 = 'https://sabrina-investment-advisor-vq36ocpmka-et.a.run.app/update_score/' + user.user_acctno + '/' + x;
+const url2 = 'https://sabrina-investment-advisor-vq36ocpmka-et.a.run.app/create_score/' + user.user_acctno + '/' + x;
+
+try {
+  const response = await axios.get(url1);
+  const data = response.data;
+  workflow.riskAppetite = data.riskScore;
+  workflow.riskAppetiteExist = true;
+} catch (error) {
+  const response2 = await axios.get(url2);
+  const data2 = response2.data;
+  workflow.riskAppetite = data2.riskScore;
+  console.error('An error occurred:', error);
+  workflow.riskAppetiteExist = false;
+}
+```
+\
+Cara kerja sub-flow investment advisor secara umum adalah sebagai berikut:
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/b85da0c3-1a95-48d2-ae7c-5625c99e414a)
 ### Variables
 
