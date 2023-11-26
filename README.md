@@ -136,7 +136,76 @@ Cara kerja sub-flow complaint handling secara umum adalah sebagai berikut:\
 
 ## Sub-Flow Fund Transfer
 ### User intent example
+* Mau tf
+* Tf dong
+* Saya ingin transfer
+* Mau transfer dana
+* Transfer dana ke rekening bri
+* Aku mau transfer uang
+* Transfer ke bni
+* Tf bank lain
+* Transfer bang bca
+* Kirim dana ke rekening lain
 ### Workflow
+1. Mula-mula dilakukan hit API [Fund Transfer & Balance Checking Table](https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/) untuk mendapatkan data sisa saldo user, yaitu dengan script berikut:
+```
+const url = 'https://sabrina-fund-transfer-vq36ocpmka-et.a.run.app/get_balance/' + user.user_acctno;
+
+try {
+  const response = await axios.get(url);
+  const number1 = response.data.balance;
+  workflow.userBalance = number1;
+} catch (error) {
+  console.error('An error occurred:', error);
+  workflow.identification = false
+}
+```
+2. User akan diminta untuk memilih bank tujuan transfer. Jika bank yang dipilih adalah bank selain BRI, maka user akan diminta untuk memilih metode transfer, yaitu RTGS atau Online Transfer. User diberikan kesempatan melakukan kesalahan pengisian maksimal sebanyak 3 kali, jika kesempatan tersebut habis maka user akan kembali ke main flow\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/dafc619a-600c-40ca-93d4-0e6ebf42ba36)
+3. User akan diminta untuk mengisi nomor rekening tujuan transfer. User diberikan kesempatan melakukan kesalahan pengisian maksimal sebanyak 3 kali, jika kesempatan tersebut habis maka user akan kembali ke main flow. Kesalahan pengisian dapat disebabkan oleh nomor rekening yang tidak valid, atau nomor rekening tujuan adalah nomor rekening milik user sendiri. Pengecekan terhadap kedua hal tersebut dilakukan dengan script berikut:
+```
+// Mengecek kevalidan nomor rekening tujuan dengan mencari ke tabel nama bank dan nomor rekening di API Fund Transfer & Balance Checking
+const records = await fundTransferTable.findRecords({
+  filter: {acctno: workflow.accountNumber,
+            bank: workflow.bankName}
+})
+
+if (records.length > 0) {
+  workflow.recipientName = records[0].fullname
+  workflow.accountValid = true
+} else {
+  workflow.accountValid = false
+}
+
+// Mengecek apakah nomor rekening tujuan yang dimasukkan oleh user merupakan nomor rekening milik user sendiri
+const records = await fundTransferTable.findRecords({
+  filter: {acctno: workflow.accountNumber,
+            bank: workflow.bankName}
+})
+
+if (workflow.accountNumber === user.user_acctno) {
+  workflow.accountValid = false
+} else {
+  
+}
+```
+4. User akan diminta untuk mengisi nominal transfer. User diberikan kesempatan melakukan kesalahan pengisian maksimal sebanyak 3 kali, jika kesempatan tersebut habis maka user akan kembali ke main flow. Kesalahan pengisian dapat disebabkan oleh nominal transfer di bawah Rp 10.000, atau saldo yang tersedia pada rekening user tidak mencukupi (sisa saldo di rekening user setelah transfer dilakukan minimal Rp 50.000). Pengecekan terhadap kedua hal tersebut dilakukan dengan script berikut:
+```
+// Mengecek apakah nominal transfer sudah lebih dari nominal minimal transfer
+const transferNominal = workflow.transferNominal;
+const nominalValid = !isNaN(transferNominal) && transferNominal >= 10000;
+workflow.nominalValid = nominalValid;
+
+// Mengecek apakah sisa saldo di rekening user setelah dilakukan transfer sudah melebihi atau sama dengan sisa saldo minimal rekening user
+const a1 = parseInt(workflow.transferNominal.replace(/\D/g, ''), 10);
+if (workflow.userBalance - a1 >= 50000) {
+  workflow.nominalValid = true
+} else {
+  workflow.nominalValid = false
+}
+```
+5. User akan diberikan rincian transfer sebelum proses transfer dilakukan
+6. Jika user mengkonfirmasi rincian transfer tersebut, maka proses transfer akan dilakukan dan user akan mendapatkan bukti transfer
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/eb60d4a1-7535-4b3d-ae40-35ce7d46bac5)
 ### Variables
 
