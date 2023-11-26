@@ -182,7 +182,95 @@ Cara kerja sub-flow balance checking secara umum adalah sebagai berikut:\
 
 ## Sub-Flow Investment Advisor
 ### User intent example
+User diarahkan untuk pengecekan ketersediaan data profil risiko:
+* Saya punya dana sejuta, sebaiknya diinvestasikan ke mana ya?
+* Saranin saya produk investasi yg bagus dong
+* Aku mau investasi nih, enaknya invest ke mana ya?
+* Dana seratus juta baiknya diinvestasikan ke mana?
+* Saya bingung cara diversifikasi portofolio investasi, kasih rekomendasi dong
+  
+User langsung diarahkan untuk mengisi kuisioner profil risiko:
+* Saya mau tau profil risiko saya
+* Saya pengen cek profil risiko saya
+* Saya ingin mengisi kuisioner profil risiko
+* Isi kuisioner profil risiko
+* Cek profil risiko
+  
 ### Workflow
+1. **Sebelum pengisian kuisioner profil risiko**: Pada sub-flow investment advisor, user akan diberikan rekomendasi investasi berdasarkan profil risiko mereka. Terdapat dua skenario user untuk masuk ke sub-flow ini melalui controller pada main flow, yang pertama yaitu melalui masukan-masukan user yang memiliki intensi untuk bertanya terkait rekomendasi investasi, dan yang kedua yaitu melalui masukan-masukan user yang memiliki intensi untuk melakukan pengisian kuisioner profil risiko. Klasifikasi skenario ini dilakukan oleh card AI Task pada node sub_controller. Untuk skenario yang pertama, user akan diarahkan pada node checking untuk dilakukan pengecekan data profil risiko user pada database. Jika user sebelumnya telah mengisi kuisioner profil risiko, maka user akan diberikan saran investasi berdasarkan data profil risiko user yang tersedia. Jika user belum pernah mengisi kuisioner profil risiko, maka user akan diarahkan untuk pengisian kuisioner. Sedangkan untuk skenario yang kedua, user akan langsung diarahkan untuk pengisian kuisioner profil risiko.\
+![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/d463b822-1786-4709-aa59-3c8c530654da)
+Pengecekan data profil risiko user dilakukan dengan melakukan hit API [Investment Risk Appetite Table](https://sabrina-investment-advisor-vq36ocpmka-et.a.run.app/) menggunakan script berikut:\
+```
+const url = 'https://sabrina-investment-advisor-vq36ocpmka-et.a.run.app/read_score/' + user.user_acctno;
+
+try {
+  const response = await axios.get(url);
+  const number1 = response.data.riskScore;
+  workflow.riskAppetite = number1;
+  workflow.riskAppetiteExist = true;
+} catch (error) {
+  console.error('An error occured:', error);
+  workflow.riskAppetiteExist = false
+}
+```
+2. **Pengisian kuisioner profil risiko**: Terdapat 5 pertanyaan pada kuisioner profil risiko yang masing-masing jawaban user atas pertanyaan tersebut akan melalui pembobotan untuk menentukan profil risiko user. Berikut ini adalah daftar pertanyaannya:\
+```
+Kuisioner:
+a. Manakah yang paling menggambarkan dirimu?
+- Belum menikah (20)
+- Sudah menikah, belum punya anak (16)
+- Sudah menikah, anak 1 (12)
+- Sudah menikah, anak 2 atau lebih (8)
+- Sudah pensiun (4)
+
+b. Bagaimanakah prinsipmu dalam berinvestasi?
+- Menghindari kerugian (4)
+- Keduanya sama penting (12)
+- Memaksimalkan keuntungan (20)
+
+c. Jika keadaan pasar sedang tidak menentu dan nilai investasimu turun 15% dalam sebulan, apa yang akan kamu lakukan?
+- Jual semua (4)
+- Jual sebagian (8)
+- Simpan (12)
+- Beli lagi (20)
+
+d. Bagaimana tingkat pengetahuan dan pengalaman Anda dalam berinvestasi?
+- Sangat terbatas, hampir tidak tahu sama sekali (4)
+- Terbatas, memiliki sedikit pemahaman dasar (8)
+- Sedang, memiliki pengetahuan dasar dan pengalaman beberapa tahun (12)
+- Tinggi, memiliki pengetahuan mendalam dan pengalaman yang luas (16)
+
+e. Berapa lama rencana investasi Anda?
+- Kurang dari 1 tahun (4)
+- 1 hingga 3 tahun (8)
+- 4 hingga 5 tahun (16)
+- Lebih dari 5 tahun (24)
+```
+Berikut ini adalah daftar pembagian profil risikonya:\
+```
+a. Konservatif
+- Britama Rencana, yaitu tabungan investasi dengan setoran tetap bulanan yang dilengkapi dengan fasilitas perlindungan asuransi jiwa. Anda bisa mendaftar Britama Rencana dengan mengunjungi kantor BRI terdekat.
+- Deposito, yaitu simpanan berjangka yang hanya dapat ditarik pada jangka waktu tertentu dengan bunga lebih besar dibanding giro atau tabungan. Anda bisa mendaftar Deposito Rupiah secara online di https://eform.bri.co.id/home/syarat/deposito atau dengan mengunjungi kantor cabang BRI terdekat.
+
+b. Konservatif-Moderat
+- BRIFINE DPLK Pasar Uang, yaitu produk investasi yang memiliki tingkat risiko rendah dengan instrumen investasi sebagai berikut: Deposito, SBI, Obligasi jangka n < 1 tahun. Pendaftaran dapat dilakukan di Kantor Cabang & Kantor Cabang Pembantu BRI yang telah memiliki sistem BRIVEST.
+- BRIFINE DPLK Pasar Uang Syariah, yaitu produk investasi yang memiliki tingkat risiko rendah dengan instrumen investasi yaitu: Deposito Bank Syariah, SBI Syariah, SUKUK dengan jangka waktu n < 1 tahun. Pendaftaran dapat dilakukan di Kantor Cabang & Kantor Cabang Pembantu BRI yang telah memiliki sistem BRIVEST.
+- Reksa Dana Pasar Uang, yaitu instrumen investasi Efek bersifat Utang dan bertujuan untuk menjaga likuiditas dengan risiko tergolong rendah dan waktu jatuh tempo pendek, kurang lebih 1 (satu) tahun. Anda bisa membeli Reksa Dana Pasar Uang di Sentra Layanan BRI Prioritas terdekat.
+- Obligasi Negara Ritel (ORI), yaitu surat berharga yang diterbitkan oleh pemerintah untuk investor ritel. ORI menawarkan pengembalian tetap (fixed rate) yang artinya tingkat kupon tidak akan berubah sampai jatuh tempo. Kamu dapat melakukan pemesanan melalui SBN Online BRI di https://sbn.bri.co.id.
+
+c. Moderat
+- BRIFINE DPLK Pendapatan Tetap, yaitu produk investasi yang memiliki tingkat risiko sedang dengan instrumen investasi sebagai berikut: SUKUK, Surat Berharga Negara, Obligasi Korporasi BUMN. Pendaftaran dapat dilakukan di Kantor Cabang & Kantor Cabang Pembantu BRI yang telah memiliki sistem BRIVEST.
+- Reksa Dana Pendapatan Tetap, yaitu produk reksadana yang sebagian besar alokasi dananya berbentuk efek utang, dengan risiko lebih besar dari Pasar Uang dan waktu jatuh tempo  lebih dari 1 (satu) tahun.Anda bisa membeli Reksa Dana Pendapatan Tetap di Sentra Layanan BRI Prioritas terdekat.
+
+d. Moderat-Agresif
+- BRIFINE DPLK Kombinasi, yaitu produk investasi yang memiliki tingkat risiko sesuai komposisi dengan instrumen investasi berupa kombinasi antara 2 atau 3 investasi sesuai pilihan peserta. Pendaftaran dapat dilakukan di Kantor Cabang & Kantor Cabang Pembantu BRI yang telah memiliki sistem BRIVEST.
+
+e. Agresif
+- BRIFINE DPLK Saham, yaitu produk investasi yang memiliki tingkat risiko tinggi dengan instrumen investasi sebagai berikut: Reksadana Saham, Saham. Pendaftaran dapat dilakukan di Kantor Cabang & Kantor Cabang Pembantu BRI yang telah memiliki sistem BRIVEST.
+- Reksa Dana Saham, yaitu produk investasi yang menempatkan investasi ke pembelian saham-saham yang tercatat di Bursa Efek Indonesia, dengan risiko lebih tinggi (dari pasar uang dan pendapatan tetap) dan pengembalian yang lebih tinggi. Anda bisa membeli Reksa Dana Saham di Sentra Layanan BRI Prioritas terdekat.
+- Rekening Dana Nasabah (RDN), yaitu rekening yang dipergunakan khusus untuk Anda yang ingin bertransaksi efek (Saham/Obligasi) di Bursa Efek Indonesia. Anda dapat melakukan pembukaan RDN melalui aplikasi BRImo.
+```
+3. **Setelah pengisian kuisioner profil risiko**
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/b85da0c3-1a95-48d2-ae7c-5625c99e414a)
 ### Variables
 
