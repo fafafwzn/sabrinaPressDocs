@@ -199,6 +199,7 @@ User langsung diarahkan untuk mengisi kuisioner profil risiko:
 ### Workflow
 1. **Sebelum pengisian kuisioner profil risiko**: Pada sub-flow investment advisor, user akan diberikan rekomendasi investasi berdasarkan profil risiko mereka. Terdapat dua skenario user untuk masuk ke sub-flow ini melalui controller pada main flow, yang pertama yaitu melalui masukan-masukan user yang memiliki intensi untuk bertanya terkait rekomendasi investasi, dan yang kedua yaitu melalui masukan-masukan user yang memiliki intensi untuk melakukan pengisian kuisioner profil risiko. Klasifikasi skenario ini dilakukan oleh card AI Task pada node sub_controller. Untuk skenario yang pertama, user akan diarahkan pada node checking untuk dilakukan pengecekan data profil risiko user pada database. Jika user sebelumnya telah mengisi kuisioner profil risiko, maka user akan diberikan saran investasi berdasarkan data profil risiko user yang tersedia. Jika user belum pernah mengisi kuisioner profil risiko, maka user akan diarahkan untuk pengisian kuisioner. Sedangkan untuk skenario yang kedua, user akan langsung diarahkan untuk pengisian kuisioner profil risiko.\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/d463b822-1786-4709-aa59-3c8c530654da)
+\
 Pengecekan data profil risiko user dilakukan dengan melakukan hit API [Investment Risk Appetite Table](https://sabrina-investment-advisor-vq36ocpmka-et.a.run.app/) menggunakan script berikut:\
 ```
 const url = 'https://sabrina-investment-advisor-vq36ocpmka-et.a.run.app/read_score/' + user.user_acctno;
@@ -291,7 +292,7 @@ try {
 }
 ```
 \
-Cara kerja sub-flow investment advisor secara umum adalah sebagai berikut:
+Cara kerja sub-flow investment advisor secara umum adalah sebagai berikut:\
 ![image](https://github.com/fafafwzn/sabrinaPressDocs/assets/44219042/b85da0c3-1a95-48d2-ae7c-5625c99e414a)
 ### Variables
 
